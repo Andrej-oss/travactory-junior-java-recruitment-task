@@ -10,10 +10,10 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.PERSIST })
     @JoinColumn(name = "departure_airport_id")
     private Airport departure;
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.PERSIST })
     @JoinColumn(name = "destination_airport_id")
     private Airport destination;
     private Date departureDate;
@@ -25,6 +25,22 @@ public class Booking {
     private Double passengerPrice;
     private Integer passengers;
     private String classType;
+
+    public Booking() {
+    }
+
+    public Booking(Integer id, Airport departure, Airport destination, Date departureDate, Date arrivalDate,
+                   Customer customer, Double passengerPrice, Integer passengers, String classType) {
+        this.id = id;
+        this.departure = departure;
+        this.destination = destination;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.customer = customer;
+        this.passengerPrice = passengerPrice;
+        this.passengers = passengers;
+        this.classType = classType;
+    }
 
     public Integer getId() {
         return this.id;
@@ -58,14 +74,51 @@ public class Booking {
         return this.passengers;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setDeparture(Airport departure) {
+        this.departure = departure;
+    }
+
+    public void setDestination(Airport destination) {
+        this.destination = destination;
+    }
+
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public void setArrivalDate(Date arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setPassengerPrice(Double passengerPrice) {
+        this.passengerPrice = passengerPrice;
+    }
+
+    public void setPassengers(Integer passengers) {
+        this.passengers = passengers;
+    }
+
+    public void setClassType(String classType) {
+        this.classType = classType;
+    }
+
     public String getClassType() {
         String classTypeFullName;
-        switch (classType) {
+        switch (this.classType) {
             case "F":
                 classTypeFullName = "First";
                 break;
             case "E":
                 classTypeFullName = "Economy";
+                break;
             case "B":
                 classTypeFullName = "Business";
                 break;
@@ -74,21 +127,5 @@ public class Booking {
 
         }
         return classTypeFullName;
-    }
-
-    public Booking(Integer id, Airport departure, Airport destination, Date departureDate, Date arrivalDate,
-                   Customer customer, Double passengerPrice, Integer passengers, String classType) {
-        this.id = id;
-        this.departure = departure;
-        this.destination = destination;
-        this.departureDate = departureDate;
-        this.arrivalDate = arrivalDate;
-        this.customer = customer;
-        this.passengerPrice = passengerPrice;
-        this.passengers = passengers;
-        this.classType = classType;
-    }
-
-    public Booking() {
     }
 }

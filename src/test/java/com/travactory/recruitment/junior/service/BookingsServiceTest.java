@@ -13,19 +13,18 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Date;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BookingsServiceTest {
-
-    private final static int BOOKING_ID = 1;
-    private final static int PASSENGERS = 2;
-    private final static double PASSENGER_PRICE = 145.5;
-    private final static double TOTAL_PRICE = 291.0;
-
+    
+    private final static Integer BOOKING_ID = 1;
+    private final static Integer PASSENGERS = 2;
+    private final static Double PASSENGER_PRICE = 145.5;
+    private final static Double TOTAL_PRICE = 291.0;
+    
     @Mock
     private BookingsRepository bookingsRepository;
 
@@ -43,8 +42,9 @@ public class BookingsServiceTest {
 
         //then
         assertNotNull(price);
-        assertEquals(Optional.ofNullable(price.getTotalPrice()), Optional.of(TOTAL_PRICE));
-        assertEquals(Optional.ofNullable(price.getPassengerPrice()), Optional.of(PASSENGER_PRICE));
-        assertEquals(Optional.ofNullable(price.getPassengers()), Optional.of(PASSENGERS));
+        assertEquals(TOTAL_PRICE, price.getTotalPrice());
+        assertEquals(PASSENGER_PRICE, price.getPassengerPrice());
+        assertEquals(PASSENGERS, price.getPassengers());
     }
+
 }

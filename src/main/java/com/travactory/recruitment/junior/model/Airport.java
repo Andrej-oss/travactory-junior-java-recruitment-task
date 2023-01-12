@@ -16,18 +16,18 @@ public class Airport {
     private Integer gmtTimeZoneOffset;
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public String getCode() {
-        return code;
+        return this.code;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public Integer getGmtTimeZoneOffset() {
-        return gmtTimeZoneOffset;
+        return this.gmtTimeZoneOffset;
     }
 }

@@ -12,14 +12,14 @@ public class BookingPrice {
     }
 
     public Integer getPassengers() {
-        return passengers;
+        return this.passengers;
     }
 
     public Double getPassengerPrice() {
-        return passengerPrice;
+        return this.passengerPrice;
     }
 
     public Double getTotalPrice() {
-        return totalPrice;
+        return this.totalPrice;
     }
 }

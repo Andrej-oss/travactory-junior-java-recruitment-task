@@ -1,5 +1,6 @@
 package com.travactory.recruitment.junior.controller;
 
+import com.travactory.recruitment.junior.dto.BookingDTO;
 import com.travactory.recruitment.junior.model.BookingPrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,26 +17,26 @@ import java.util.List;
 @RequestMapping("/api/bookings")
 public class BookingsController {
 
-    private BookingsService bookingsService;
+    private final BookingsService bookingsService;
 
     @Autowired
     public BookingsController(final BookingsService bookingsService) {this.bookingsService = bookingsService;}
 
     @GetMapping("{id}")
     public ResponseEntity<?> getBookingById(@PathVariable(name = "id") final Integer id) {
-        final Booking booking = bookingsService.getBookingById(id);
+        final Booking booking = this.bookingsService.getBookingById(id);
         return ResponseEntity.ok(booking);
     }
 
     @GetMapping("{id}/duration")
     public ResponseEntity<?> calculateDuration(@PathVariable(name = "id") final Integer id) {
-        final FlightDuration flightDuration = bookingsService.calculateFlightDuration(id);
+        final FlightDuration flightDuration = this.bookingsService.calculateFlightDuration(id);
         return ResponseEntity.ok(flightDuration);
     }
 
     @GetMapping("{id}/price")
     public ResponseEntity<?> calculatePrice(@PathVariable(name = "id") final Integer id) {
-        final BookingPrice bookingPrice = bookingsService.calculateBookingPrice(id);
+        final BookingPrice bookingPrice = this.bookingsService.calculateBookingPrice(id);
         return ResponseEntity.ok(bookingPrice);
     }
 
@@ -46,8 +47,8 @@ public class BookingsController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> saveBooking(@RequestBody final Booking booking) {
-        bookingsService.saveBooking(booking);
+    public ResponseEntity<?> saveBooking(@RequestBody final BookingDTO bookingDTO) {
+        this.bookingsService.saveBooking(bookingDTO);
         return  ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

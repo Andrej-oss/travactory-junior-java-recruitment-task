@@ -12,14 +12,14 @@ public class FlightDuration {
     }
 
     public Long getDays() {
-        return days;
+        return this.days;
     }
 
     public Long getHours() {
-        return hours;
+        return this.hours;
     }
 
     public Long getMinutes() {
-        return minutes;
+        return this.minutes;
     }
 }
